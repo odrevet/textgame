@@ -1,0 +1,33 @@
+jeux en mode texte seulement
+
+Réalisé pour la journée de la serviette, le 25 mai 2010.
+
+Nous allons voir comment développer un mini jeu en mode console. Un jeu en mode console ? Facile ! Oui, mais voyons tout de même comment l'implémenter proprement... 
+
+
+Le principe est simple, une phrase et affichée et le joueur entre une commande, en fonction de celle- ci divers actions sont effectuées, comme l'affichage d'un nouveau texte ou le changement de certains paramètres de l'histoire (objets différents, lieu modifié). 
+
+Infocom à publié un jeu en mode texte en 1984, inspiré du space opera radiophonique de la BBC, le Guide de l'Autostoppeur Galactique  (http://www.douglasadams.com/creations/infocomjava.html), la BBC propose une version flash de ce jeu ici http://www.bbc.co.uk/radio4/hitchhikers/game_andrew.shtml. 
+
+Nous allons voir comment réaliser un interpréteur en mode console pour faire un jeu équivalent, du moins équivalent techniquement. Le génie de ce jeu réside dans adaptation de H2G2, mais nous verrons plus tard comment rendre l’interpréteur extensible avec des fonctions en lua. 
+
+Session d'une partie du jeu d'infocom
+Infocom interactive fiction - a science fiction story
+Copyright (c) 1984 by Infocom, Inc. All rights reserved.
+Release 59 / Serial number 851108
+
+You wake up. The room is spinning very gently round your head. Or at least it would be if you could see it which you can't.
+
+It is pitch black.
+> see
+What do you want to see?
+> see room
+It's too dark to see!
+
+Le texte est une description du lieu, il doit insidieusement permettre au joueur de deviner les commandes valides qu'il peut entrer. 
+
+Le jeu développé ici sera très court, son but est d'implémenter les premières fonctions de base pour montrer comment l'étendre par la suite. 
+Scenario du jeu : 
+Jeudi 25 mai, 7H42 du matin, dans la pénombre vous pensez avoir besoin d'un objet banal mais qui vous sera très utile. 
+
+La partie commence dans la chambre dans le noir, le joueur doit entrer 'allumer lampe' pour aller au lieu chambre éclairé, puis aller salle de bain et prendre serviette, puis retourner dans la chambre avec aller chambre, et enfin aller couloir pour finir le jeu. 
